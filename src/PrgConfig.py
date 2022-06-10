@@ -2,7 +2,6 @@
 
 
 
-
 scr1screen = {
   "adr1" : {"type":"label", "pos":[0,0], "text":"Anrede"},
   "adr2" : {"type":"label", "pos":[0,1], "text":"Name"},

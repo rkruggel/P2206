@@ -10,7 +10,10 @@ import src.PrgConfig as pc
 
 
 class Root(Tk):
-  ''' ertellt das mainwindow '''
+  ''' 
+  Ertellt das mainwindow und alle dazugehörigen Fenster. 
+  Es ist die hauptklasse die aufgerufen wird.
+  '''
   def __init__(self):
     super(Root, self).__init__()
     pdMain = pc.data["mainwindow"]
@@ -28,7 +31,7 @@ class Root(Tk):
 #    self.labelFrame.grid(column=0, row=7, padx=20, pady=40)
 
     self.createMenus()
-    self.autoste()
+    self.createScreens()
 
 #    self.flabels()
 
@@ -45,7 +48,7 @@ class Root(Tk):
 
 
 
-  def autoste(self):
+  def createScreens(self):
     ''' erstellen des Screens '''
     scScreen = pc.data["scr1"]["screen"]
 
@@ -64,17 +67,18 @@ class Root(Tk):
         atz["wt"] = self.entry_a1
 
       if atz["type"] == "button":
-        comm = "self." + atz["command"]
+        comm = atz["command"]
         erg = atz["ergebnis"]
         para = atz["param"]
-        globals()[comm]("jj")
+        pat = "self.{comm}({erg},{para})".format(comm=comm, erg=erg, para=para)
+        eval("self.{comm}({erg},{para})".format(comm=comm, erg=erg, para=para))
+        globals()[comm](None, None)
         self.button_a1 = ttk.Button(self, text=atz["text"], command=lambda: comm())
         self.button_a1.grid(column=atz["pos"][0],row=atz["pos"][1])
       
       a = 0
 
     ast = scScreen["adr1"]["type"]
-
 
     if ast == ttk.Label:
       pass
@@ -100,3 +104,5 @@ class Root(Tk):
 #    ttk.Label(self.labelFrame, text="Label Two").grid(column=0, row=1, sticky=W)
 #    ttk.Label(self.labelFrame, text="Label Three").grid(column=0, row=2, sticky=W)
 
+def addlabels(*values):
+  pass
