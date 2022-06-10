@@ -31,26 +31,38 @@ scr2screen = {
   "adr2" : {"type":"label", "pos":[1,0], "text":"Ausgabe"}
 }
 </pre>
+
 <pre>
 scr1menu = {
 }
 </pre>
+
 <pre>
 data = {
   "mainwindow" : { 
+    "name" : "Testprogramm",
     "width":400, "height":500, 
     "text":"Top neues Window",
     "icon":"" },
   "scr1" : {
+    "name" : "scr1",
     "screen" : scr1screen,
-    "menu" : scr1menu,
-  },
+    "menu" : scr1menu },
   "scr2" : {
+    "name" : "scr2",
     "screen" : scr2screen,
     "menu" : scr1menu
   }
 }
 </pre>
 
-a asdf asf as a
+In *data* wird alles zusammengesetzt.
+
+Aufrufe der einzelnen Teile von *data*
+- *mainwindow* wird bein Programmstart aufgerufen.
+- *scr1 .. scrx* wird aus dem Menü aus aufgerufen. Es wird automatisch ein Menüeintrag erstellt.
+
+Die Datenbank bzw die Tabellen werden automatisch erstellt. Die Datenbank heißt wie *name* des *mainwindow*. Die Tabellen heißen wie *name* der einzelnen *scrx*
+
+
 
