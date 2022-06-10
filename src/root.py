@@ -15,10 +15,6 @@ class Root(Tk):
     super(Root, self).__init__()
     pdMain = pc.data["mainwindow"]
 
-    a=0
-
-    ass = u.ck(pdMain,("text", "height", "icon"))
-
     if u.ck(pdMain,("text")):
       self.title(pdMain["text"])                          # title("Tkinter first Window")
 
@@ -33,6 +29,7 @@ class Root(Tk):
 
     self.createMenus()
     self.autoste()
+
 #    self.flabels()
 
   def createMenus(self):
@@ -67,9 +64,12 @@ class Root(Tk):
         atz["wt"] = self.entry_a1
 
       if atz["type"] == "button":
-        self.button_a1 = ttk.Button(self, text=atz["text"], command=lambda: self.addlabels("erg1", "entry3", "entry2"))
+        comm = "self." + atz["command"]
+        erg = atz["ergebnis"]
+        para = atz["param"]
+        globals()[comm]("jj")
+        self.button_a1 = ttk.Button(self, text=atz["text"], command=lambda: comm())
         self.button_a1.grid(column=atz["pos"][0],row=atz["pos"][1])
-        #atz["wt"] = getattr(self.button_a1)
       
       a = 0
 

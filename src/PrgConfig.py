@@ -12,7 +12,7 @@ scr1screen = {
   "entr2" : {"type":"entry", "pos":[1,1], "text":"", "width":20},
   "entr3" : {"type":"entry", "pos":[1,2], "text":"", "width":20},
   "entr4" : {"type":"entry", "pos":[1,3], "text":"", "width":20},
-  "butt1" : {"type":"button", "pos":[1,4], "text":"Ok", "command":"addlabels"},
+  "butt1" : {"type":"button", "pos":[1,4], "text":"Ok", "command":"addlabels", "ergebnis":"erg1", "param" :["entr1", "entr3", "entr2"]},
   "erg1" : {"type":"label", "pos":[1,5], "text":"hier das ergebnis"},
 
   "lblfrm1": {"type":"labelframe", "pos": [0,7], "text":"Rolands Labelframe", "inner" : {
