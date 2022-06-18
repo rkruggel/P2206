@@ -149,7 +149,14 @@
 
 
         <!-- Liste unten -->
-        <Label Content="Liste" Grid.Column="1" Grid.Row="3" Style="{StaticResource pv4}"  Margin="5,0,0,0" Height="24" VerticalAlignment="Center" Width="34"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Height="25" Margin="5,0,0,0">
+            <Label Content="Liste" Style="{StaticResource pv4}" Margin="5,0,0,0" Padding="0"
+                   VerticalAlignment="Center" Width="30" FontSize="11" />
+            <CheckBox Name="ckBox" Content="Alle Daten" IsChecked="True" Padding="5,0,0,0"
+                      VerticalAlignment="Center" Margin="20,0,0,0" FontSize="11"
+                      ToolTip="" Click="ckBox_Click" 
+                      />
+        </StackPanel>
         <ListView Name="lvDataBinding" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="4" Margin="5,0,5,0"  >
             <ListView.View>
                 <GridView>

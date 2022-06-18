@@ -18,6 +18,10 @@ namespace P2206.db
     {
         public static int a;
 
+        /// <summary>
+        /// liefert den filename der db
+        /// </summary>
+        /// <returns></returns>
         public static string filename()
         {
             FileInfo? fi = new FileInfo(Assembly.GetEntryAssembly().Location);
@@ -124,6 +128,10 @@ namespace P2206.db
             return 0;
         }
 
+        /// <summary>
+        /// Liest alle datensätze
+        /// </summary>
+        /// <returns></returns>
         public static List<DbAdressen> getAllAdressen()
         {
             List<DbAdressen> dadr;  // = new DbAdressen();
@@ -137,6 +145,23 @@ namespace P2206.db
             var da1 = dadr[0].TellId;
             var da2 = dadr[1].TellId;
             var da3 = dadr[2].TellId;
+
+            return dadr;
+        }
+
+        /// <summary>
+        /// Liest alle Datensätze mit dem TellFlag == 'y'
+        /// </summary>
+        /// <returns></returns>
+        public static List<DbAdressen> getAllAdressenWithTellFlag()
+        {
+            List<DbAdressen> dadr;  // = new DbAdressen();
+            using (var idb = new LiteDatabase(filename()))
+            {
+                var resu = idb.GetCollection<DbAdressen>("dbAdressen");
+
+                dadr = resu.Find(x => x.TellFlag == "y").ToList();
+            }
 
             return dadr;
         }

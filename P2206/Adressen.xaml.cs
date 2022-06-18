@@ -147,10 +147,11 @@ namespace P2206
                     a = 0;
                 }
             }
-            // benötigt wird: Id, TellId, TellFlag, Version
-            var sjj = Db.getAllAdressen();
 
-            lvDataBinding.ItemsSource = sjj;
+            // abhängig von der Combobox 'Alle Daten' werden die Daten angezeigt
+            ckBox_Click(null, null);
+
+            //lvDataBinding.ItemsSource = sjj;
         }
 
         private void btnCmdDel_Click(object sender, RoutedEventArgs e)
@@ -172,6 +173,7 @@ namespace P2206
             dbAdressen.Geaendert = DateTime.Now;
 
             var ahh = dbAdressen.CmbTyp;
+            
         }
 
         private void btnCmdOk_Click(object sender, RoutedEventArgs e)
@@ -179,15 +181,38 @@ namespace P2206
             Db.saveAdresse(dbAdressen);
         }
 
+        /// <summary>
+        /// Event
+        /// Wird ausgelöst wenn in dem ListViewein Eintrag zwei mal geklickt wurde.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var item = sender as ListViewItem;
             if (item != null && item.IsSelected)
             {
-                //Do your stuff
                 var ajsjj = item.DataContext as DbAdressen;
                 var tllid = ajsjj.TellId;
+                a = 0;
+           }
+        }
+
+
+        private void ckBox_Click(object sender, RoutedEventArgs e)
+        {
+            List<DbAdressen> listOfDbadr;
+
+            // benötigt wird: Id, TellId, TellFlag, Version
+            if (ckBox.IsChecked == true)
+            {
+                listOfDbadr = Db.getAllAdressen();
             }
+            else
+            {
+                listOfDbadr = Db.getAllAdressenWithTellFlag();
+            }
+            lvDataBinding.ItemsSource = listOfDbadr;
         }
     }
 }
