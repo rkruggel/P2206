@@ -150,9 +150,20 @@
 
         <!-- Liste unten -->
         <Label Content="Liste" Grid.Column="1" Grid.Row="3" Style="{StaticResource pv4}"  Margin="5,0,0,0" Height="24" VerticalAlignment="Center" Width="34"/>
-        <ListView Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="4" Margin="5,0,5,0"
-                 d:ItemsSource="{d:SampleData ItemCount=15}">
-
+        <ListView Name="lvDataBinding" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="4" Margin="5,0,5,0"  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="TellId" Width="120" DisplayMemberBinding="{Binding TellId}" />
+                    <GridViewColumn Header="TellFlag" Width="120" DisplayMemberBinding="{Binding TellFlag}"/>
+                    <GridViewColumn Header="Version" Width="120" DisplayMemberBinding="{Binding Version}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <!--d:ItemsSource="{d:SampleData ItemCount=15}">-->
         </ListView>
 
         <!-- Tab -->

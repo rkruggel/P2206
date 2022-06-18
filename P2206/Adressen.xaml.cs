@@ -1,5 +1,4 @@
 ﻿#pragma warning disable CS8618 // Ein Non-Nullable-Feld muss beim Beenden des Konstruktors einen Wert ungleich NULL enthalten. Erwägen Sie die Deklaration als Nullable.
-using LiteDB;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,8 +16,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.Reflection;
-
-
+using LiteDB;
+using P2206.db;
+using P2206.db.beans;
 
 namespace P2206
 {
@@ -34,6 +34,7 @@ namespace P2206
         {
             Id = new ObjectId(),                       //.Text = "878122";
             TellId = "RolandKruggel" + new Random().Next(100, 999).ToString(),    //.Text = "RolandKruggel824";
+            TellFlag = "y",
             Version = 0,                    //Die Version. Wird bei jedem ändern un eins erhöht; default = 0
             CmbTyp = 0,                     //.SelectedIndex = 0;
             Deaktiv = false,
@@ -146,8 +147,10 @@ namespace P2206
                     a = 0;
                 }
             }
-
+            // benötigt wird: Id, TellId, TellFlag, Version
             var sjj = Db.getAllAdressen();
+
+            lvDataBinding.ItemsSource = sjj;
         }
 
         private void btnCmdDel_Click(object sender, RoutedEventArgs e)
@@ -176,6 +179,15 @@ namespace P2206
             Db.saveAdresse(dbAdressen);
         }
 
-
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var item = sender as ListViewItem;
+            if (item != null && item.IsSelected)
+            {
+                //Do your stuff
+                var ajsjj = item.DataContext as DbAdressen;
+                var tllid = ajsjj.TellId;
+            }
+        }
     }
 }
