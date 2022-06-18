@@ -21,10 +21,10 @@ namespace P2206
 
     public class DbAdressen : INotifyPropertyChanged
     {
-
-        // Die Id. 
+        // Die Privaten Variablen zu den Properties.
         private ObjectId _id;
         private string _tellid;
+        private string _tellFlag;
         private int _version;
         private int _cmbTyp;
         private bool _deaktiv;
@@ -43,6 +43,7 @@ namespace P2206
         private string _editorsonstigesr;
         private string _editorbem;
 
+        // Die Id. Benutzt wird hier eine ObjectID
         public ObjectId Id
         {
             get { return _id; }
@@ -53,7 +54,9 @@ namespace P2206
             }
         }
 
-        //.Text = "RolandKruggel824";
+        // Die TellId wird zusammengesatzt aus Vorname + Nachname + 3-Stellige Nummer
+        // Das ist die primäre SuchId. 
+        // Bspl.: "RolandKruggel824"
         public string TellId
         {
             get { return _tellid; }
@@ -63,7 +66,21 @@ namespace P2206
                 OnPropertyChanged(nameof(TellId));
             }
         }
+
+        // Das Tellflag ist 'y' wenn der aktuelle Datensatz gültig ist. 
+        //  Sonst ist er 'n'.
+        public string TellFlag
+        {
+            get { return _tellFlag; }
+            set
+            {
+                _tellFlag = value;
+                OnPropertyChanged(nameof(TellFlag));
+            }
+        }
+
         // Die Version
+        // Bspl.: 5
         public int Version
         {
             get => _version;
@@ -73,6 +90,7 @@ namespace P2206
                 OnPropertyChanged(nameof(Version));
             }
         }
+
         //.SelectedIndex = 0;
         public int CmbTyp
         {
@@ -84,7 +102,7 @@ namespace P2206
             }
         }
 
-        // true, wenn der User ist deaktiviert
+        // true, wenn der User deaktiviert ist
         public bool Deaktiv
         {
             get => _deaktiv;
@@ -95,7 +113,8 @@ namespace P2206
             }
         }
 
-        //.Text = DateTime.Now.ToString("g");
+        // Wenn der Datensatz angelegt wird.
+        // Bspl.: DateTime.Now.ToString("g")
         public DateTime Anlage
         {
             get => _anlage;
@@ -106,7 +125,8 @@ namespace P2206
             }
         }
 
-        //.Text = DateTime.Now.ToString("g");
+        // Wenn der Datensatz geändert wird.
+        // Bspl.: DateTime.Now.ToString("g")
         public DateTime Geaendert
         {
             get => _geaendert;
