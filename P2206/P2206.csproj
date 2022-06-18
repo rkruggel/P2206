@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="icons\icons8-bearbeiten-50.png" />
+    <None Remove="icons\icons8-löschen-50.png" />
+    <None Remove="icons\icons8-menü-50.png" />
+    <None Remove="icons\icons8-ok-50.png" />
+    <None Remove="icons\icons8-plus-50.png" />
+    <None Remove="icons\icons8-synchronisieren-50.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiteDB" Version="5.0.12" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.116" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icons\icons8-bearbeiten-50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\icons8-löschen-50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\icons8-menü-50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\icons8-ok-50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\icons8-plus-50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\icons8-synchronisieren-50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

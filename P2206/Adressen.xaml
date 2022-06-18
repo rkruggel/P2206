@@ -1,0 +1,221 @@
+﻿<Page x:Class="P2206.Adressen"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="900"
+      Title="Adressen">
+
+    <Page.Resources>
+        <Style TargetType="Label" x:Key="pv3">
+            <Setter Property="Foreground" Value="BlueViolet" />
+            <Setter Property="Height" Value="26" />
+        </Style>
+        <Style TargetType="Label" x:Key="pv4">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="myEditL">
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="10pt"  />
+            <Setter Property="BorderBrush" Value="DarkGray" />
+            <Setter Property="BorderThickness" Value="1,1,0,1" />
+            <Setter Property="Foreground" Value="#FF8E8888"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="myEditR">
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="10pt"  />
+            <Setter Property="BorderBrush" Value="DarkGray" />
+            <Setter Property="BorderThickness" Value="0,1,1,1" />
+            <Setter Property="AcceptsReturn" Value="True"/>
+            <Setter Property="AcceptsTab" Value="True"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="TextWrapping" Value="NoWrap" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Name="grdMain" Loaded="grdMain_Loaded" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="300*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Überschrift -->
+        <Label Grid.Column="0" Content="Adressen" Margin="5,0,0,0"
+               HorizontalAlignment="Left" VerticalAlignment="Center" 
+               FontSize="20" FontWeight="Bold" Height="36" Width="96"   />
+
+        <!-- Aktionsbuttons -->
+        <StackPanel Grid.Column="1" Grid.Row="0" Margin="337,0,0,0" 
+                    Orientation="Horizontal" HorizontalAlignment="Left" Width="108">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Width" Value="22"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="Margin" Value="5,0,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Name="btnCmdDel" ToolTip="Den aktuellen Datensatz löschen" Click="btnCmdDel_Click">
+                <Image Source="/icons/icons8-löschen-50.png" />
+            </Button>
+            <Button Name="btnCmdEdit" ToolTip="Den aktuellen Datensatz bearbeiten" Click="btnCmdEdit_Click">
+                <Image Source="/icons/icons8-bearbeiten-50.png" />
+            </Button>
+            <Button Name="btnCmdAdd" ToolTip="Einen Datensatz hinzufügen" Click="btnCmdAdd_Click">
+                <Image Source="/icons/icons8-plus-50.png" />
+            </Button>
+            <Button Name="btnCmdOk" ToolTip="Den aktuellen Datensatz speichern" Click="btnCmdOk_Click">
+                <Image Source="/icons/icons8-ok-50.png" />
+            </Button>
+
+        </StackPanel>
+
+        <!-- Suchttext -->
+        <TextBox Name="txtSeek" Text="suchen" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="5,0,5,0" VerticalAlignment="Center" Height="18"/>
+
+        <!-- Datenzeile oben -->
+        <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal"  Margin="5,0,5,0">
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <Label Content="Id" />
+                <TextBox Name="txtId" Width="60" IsReadOnly="True"
+                         HorizontalAlignment="Left" VerticalAlignment="Center"
+                         Text="{Binding Id, Mode=TwoWay}"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <Label Content="TellId" />
+                <TextBox Name="txtTellId" Width="160" IsReadOnly="False"
+                         HorizontalAlignment="Left" VerticalAlignment="Center" 
+                         Text="{Binding TellId}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <Label Content="Typ"/>
+                <ComboBox Name="cmbTyp" Width="90" Height="24" SelectedIndex="{Binding CmbTyp, Mode=TwoWay}">
+                    <ComboBoxItem Content="Person" IsSelected="True"/>
+                    <ComboBoxItem Content="Firma"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <Label Content=""/>
+                <CheckBox Name="ckbDeaktiviert" Content="Deaktiviert"  
+                          IsChecked="{Binding Path=Deaktiv, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <Label Content="Version" />
+                <TextBox Name="txtVersion"  IsReadOnly="True" Width="30"
+                         Text="{Binding Version}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <Label Content="Anlage" />
+                <TextBox Name="txtAnlage"  IsReadOnly="True"
+                         Text="{Binding Anlage, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <Label Content="geändert" />
+                <TextBox Name="txtGeaendert" IsReadOnly="True"
+                         Text="{Binding Geaendert, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Eingabe linke Seite -->
+        <Label Content="Anrede, Name" Grid.Column="0" Grid.Row="3" Style="{StaticResource pv4}" VerticalAlignment="Center"  Margin="5,0,0,0" Height="24" Width="86" />
+        <Grid Grid.Column="0" Grid.Row="4" Margin="5,0,5,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Name="txtNameL" Grid.Column="0" Text="{Binding Path=EditorNameL, Mode=TwoWay}" 
+                     Style="{StaticResource myEditL}" />
+            <TextBox Name="txtNameR" Grid.Column="1" Text="{Binding Path=EditorNameR, Mode=TwoWay}" 
+                     Style="{StaticResource myEditR}"/>
+        </Grid>
+
+
+
+        <!-- Liste unten -->
+        <Label Content="Liste" Grid.Column="1" Grid.Row="3" Style="{StaticResource pv4}"  Margin="5,0,0,0" Height="24" VerticalAlignment="Center" Width="34"/>
+        <ListView Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="4" Margin="5,0,5,0"
+                 d:ItemsSource="{d:SampleData ItemCount=15}">
+
+        </ListView>
+
+        <!-- Tab -->
+        <TabControl Grid.Row="6" Grid.RowSpan="2" Margin="5,0,5,0">
+            <TabItem Header="Anschrift">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="txtAnschriftL" Grid.Column="0" Text="{Binding Path=EditorAnschriftL, Mode=TwoWay}" 
+                         Style="{StaticResource myEditL}" />
+                    <TextBox Name="txtAnschriftR" Grid.Column="1" Text="{Binding Path=EditorAnschriftR, Mode=TwoWay}" 
+                         Style="{StaticResource myEditR}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Kontakte">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="txtEditorKontaktL" Grid.Column="0" Text="{Binding Path=EditorKontaktL, Mode=TwoWay}" 
+                    Style="{StaticResource myEditL}" />
+                    <TextBox Name="txtEditorKontaktR" Grid.Column="1" Text="{Binding Path=EditorKontaktR, Mode=TwoWay}" 
+                    Style="{StaticResource myEditR}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Internet">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="txtEditorInternetL" Grid.Column="0" Text="{Binding Path=EditorInternetL, Mode=TwoWay}" 
+                     Style="{StaticResource myEditL}" />
+                    <TextBox Name="txtEditorInternetR" Grid.Column="1" Text="{Binding Path=EditorInternetR, Mode=TwoWay}" 
+                     Style="{StaticResource myEditR}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Sonstiges">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="txtEditorSonstigesL" Grid.Column="0" Text="{Binding Path=EditorSonstigesL, Mode=TwoWay}" 
+                     Style="{StaticResource myEditL}" />
+                    <TextBox Name="txtEditorSonstigesR" Grid.Column="1" Text="{Binding Path=EditorSonstigesR, Mode=TwoWay}" 
+                     Style="{StaticResource myEditR}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Bemerkung">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="txtBem2" Text="{Binding Path=EditorBem, Mode=TwoWay}" Grid.ColumnSpan="2" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+
+    </Grid>
+</Page>

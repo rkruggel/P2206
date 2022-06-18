@@ -1,0 +1,41 @@
+﻿<Window x:Class="P2206.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P2206"
+        mc:Ignorable="d"
+        Title="P2206" Height="750" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="New"  />
+        <CommandBinding Command="Delete" CanExecute="CommonCommandBinding_CanExecute" />
+        <CommandBinding Command="Save" CanExecute="CommonCommandBinding_CanExecute" />
+    </Window.CommandBindings>
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="Save" />
+                    <MenuItem Header="Beenden" Click="MenuItemBeenden_Click" />
+                </MenuItem>
+                <MenuItem Header="_Stammdaten" >
+                    <MenuItem Header="_Adressen" Click="MenuItemAdressen_Click" />
+                    <MenuItem Header="_Tiere" Click="MenuItemTiere_Click" />
+                </MenuItem>
+            </Menu>
+            <!--<TextBox AcceptsReturn="True" />-->
+            <StatusBar Name="sbar" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Background="Beige" >
+                <StatusBarItem>
+                    <TextBlock>Roland</TextBlock>
+                </StatusBarItem>
+                <Separator/>
+                <StatusBarItem>
+                    <TextBlock>Adressen</TextBlock>
+                </StatusBarItem>
+            </StatusBar>
+            <Frame Name="mainframe" Background="AliceBlue"/>
+        </DockPanel>
+
+
+    </Grid>
+</Window>
